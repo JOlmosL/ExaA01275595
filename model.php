@@ -64,8 +64,8 @@ function tablaCocheVenta()
     $conexion_bd = conectar();
     $resultados_consulta = $conexion_bd->query($consulta);  
     
-    $resultado = '<table>';
-    $resultado .= '<tr><th>Matricula</th><th>Marca</th><th>Modelo</th><th>Color</th><th>Precio</th><th>ExtrasInstalados</th><th>Cliente</th></tr>';
+    $resultado = '<table class="table">';
+    $resultado .= '<thead><tr><th scope="row">Matricula</th><th scope="row">Marca</th><th scope="row">Modelo</th><th scope="row">Color</th><th scope="row">Precio</th><th scope="row">ExtrasInstalados</th><th scope="row">Cliente</th></tr></thead>';
 
     while ($row = mysqli_fetch_array($resultados_consulta, MYSQLI_ASSOC)) 
     { 
@@ -76,8 +76,9 @@ function tablaCocheVenta()
     //MYSQL_BOTH: Devuelve los resultados en un arreglo numérico y asociativo (Utiliza el doble de memoria)
         //$row[0] y $row["acusador"]
         
+        $resultado .= '<tbody>';
         $resultado .= '<tr>';
-        $resultado .= '<td>'.$row["matricula"].'</td>';
+        $resultado .= '<th scope="row">'.$row["matricula"].'</th>';
         $resultado .= '<td>'.$row["marca"].'</td>';
         $resultado .= '<td>'.$row["modelo"].'</td>';
         $resultado .= '<td>'.$row["color"].'</td>';
@@ -85,6 +86,7 @@ function tablaCocheVenta()
         $resultado .= '<td>'.$row["extrasInstalados"].'</td>';
         $resultado .= '<td>'.$row["cliente"].'</td>';
         $resultado .= '</tr>';
+        $resultado .= '</tbody>';
     }
     
     mysqli_free_result($resultados_consulta); //Liberar la memoria
@@ -103,19 +105,21 @@ function tablaRevision()
     $conexion_bd = conectar();
     $resultados_consulta = $conexion_bd->query($consulta);  
     
-    $resultado = '<table>';
-    $resultado .= '<tr><th>Numero</th><th>Cambio de Aceite</th><th>Cambio de Filtro</th><th>Revisión de Frenos</th><th>Otros</th><th>Matrícula</th></tr>';
+    $resultado = '<table class="table">';
+    $resultado .= '<thead><tr><th scope="col">Numero</th><th scope="col">Cambio de Aceite</th><th scope="col">Cambio de Filtro</th><th scope="col">Revisión de Frenos</th><th scope="col">Otros</th><th scope="col">Matrícula</th></tr></thead>';
 
     while ($row = mysqli_fetch_array($resultados_consulta, MYSQLI_ASSOC)) 
-    {        
+    {   
+        $resultado .= '<tbody>';     
         $resultado .= '<tr>';
-        $resultado .= '<td>'.$row["noRevision"].'</td>';
+        $resultado .= '<th scope="row">'.$row["noRevision"].'</th>';
         $resultado .= '<td>'.$row["cambioAceite"].'</td>';
         $resultado .= '<td>'.$row["cambioFiltro"].'</td>';
         $resultado .= '<td>'.$row["revisionFrenos"].'</td>';
         $resultado .= '<td>'.$row["otros"].'</td>';
         $resultado .= '<td>'.$row["matricula"].'</td>';
         $resultado .= '</tr>';
+        $resultado .= '</tbody>';
     }
     
     mysqli_free_result($resultados_consulta);
