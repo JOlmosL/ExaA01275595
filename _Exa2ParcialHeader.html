@@ -22,11 +22,9 @@
                   <a class="nav-link" href="Exa2ParcialHome.php">Inicio<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Opciones de FORMS
-                  </a>
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opciones de FORMS</a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">FORM 1</a>
+                    <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">FORM 1</a>
                     <a class="dropdown-item" href="#">FORM 2</a>
                     <a class="dropdown-item" href="#">FORM 3</a>
                     <div class="dropdown-divider"></div>
@@ -37,3 +35,42 @@
             </div>
           </nav>
     </header>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+              <form>
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Nuevo Producto</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <div class="container-fluid">
+                          <div class="row justify-content-center">
+                              <div class="col-1"></div> 
+                              <div class="col-5 my-auto" align="center">
+                                  <input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;">
+                                  <label for="file" style="cursor: pointer;">Elegir Imagen</label>
+                                  <img class="img-fluid" id="output" />
+                                  <script src="AddProduct.js"></script>
+                              </div>
+
+                              <div class="col-5 my-auto" align="center">
+                                  <input type="text" placeholder="Nombre del Producto" id="NombreProducto" name="NombreProducto"><br><br>
+                                  <input type="text" placeholder="Descripción" id="Descripcion" name="Descripcion"><br><br> 
+                                  <input type="number" placeholder="Precio Estimado" id="PrecioEstimado" name="PrecioEstimado">
+                              </div>
+                              <div class="col-1"></div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                      <button type="submit" class="btn btn-primary">Aceptar</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
