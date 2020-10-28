@@ -4,7 +4,7 @@
 function conectar() 
 {
 
-    $conexion_bd = mysqli_connect("178.128.147.74","doadmin","ysuucn7048n2le7u","Exa2Parcial");
+    $conexion_bd = mysqli_connect("exa-db-a01275595-do-user-8217587-0.b.db.ondigitalocean.com","doadmin","ysuucn7048n2le7u","Exa2Parcial");
     
     if ($conexion_bd == NULL) 
     {
