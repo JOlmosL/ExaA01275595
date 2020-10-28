@@ -25,11 +25,11 @@ if (isset($_POST["idCliente"]) && isset($_POST["idCliente"]) != ""
     if (is_numeric($idCliente) && is_numeric($codigoPostal) && is_numeric($telefono))
     {
         InsertNuevoCliente($idCliente, $nombreCliente, $apellidosCliente, $direccionCliente, $poblacion, $codigoPostal, $telefono, $fechaNac);
-        include("Exa2ParcialBone.php");
+        include("Exa2ParcialHome.php");
     }
 }
 else
 {
-    header("location:Exa2ParcialBone.php");
+    header("location:Exa2ParcialHome.php");
 }
 ?>
