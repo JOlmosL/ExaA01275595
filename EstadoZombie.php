@@ -4,7 +4,7 @@ require_once("model.php");
 
 conectar();
 
-if (isset($_POST["NumZombie"]) && isset($_POST["NumZombie"]) != "")
+if (isset($_POST["NumZombie"]) && isset($_POST["NumZombie"]) != ""
 && (isset($_POST["NumEstado"]) && isset($_POST["NumEstado"]) != "")
 {
     $NumZombie = htmlspecialchars($_POST["NumZombie"]);
