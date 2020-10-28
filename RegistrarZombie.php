@@ -10,7 +10,6 @@ if (isset($_POST["NombreZombie"]) && isset($_POST["NombreZombie"]) != ""
 
     InsertZombie($NombreZombie);
     include("Exa2ParcialHome.php");
-    
 }
 
 else
