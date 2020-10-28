@@ -213,14 +213,14 @@ function Cant_Zombies()
     $resultados_consulta = $conexion_bd->query($consulta);  
     
     $resultado = '<table class="table">';
-    $resultado .= '<thead><tr><th scope="col">Nombre del Estado</th><th scope="col">Cantidad de Zombien con este Estado</th></tr></thead>';
+    $resultado .= '<thead><tr><th scope="col">Nombre del Estado</th><th scope="col">Cantidad de Zombies con este Estado</th></tr></thead>';
 
     while ($row = mysqli_fetch_array($resultados_consulta, MYSQLI_ASSOC)) 
     {   
         $resultado .= '<tbody>';     
         $resultado .= '<tr>';
         $resultado .= '<th scope="row">'.$row["NombreEstado"].'</th>';
-        $resultado .= '<td'.$row["NumEstado"].'</td>';
+        $resultado .= '<td>'.$row["NumEstado"].'</td>';
         $resultado .= '</tr>';
         $resultado .= '</tbody>';
     }
