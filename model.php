@@ -116,6 +116,91 @@ function tablaRegistro()
     return $resultado;
 }
 
+
+
+function InsertZombie($NombreZombie)
+{
+     
+    $conexion_bd = conectar();
+    
+    $consulta = 'INSERT INTO ZOMBIE (NombreZombie) VALUES (?)';
+    //Parametros son los signos de interrogación
+
+    //Verifica que la consulta sea correcta
+    if(!($statement = $conexion_bd->prepare($consulta))) 
+    {
+        die("Error(".$conexion_bd->errno."): ".$conexion_bd->error);
+    }
+    
+    //Evita +- SQL inyection | Hace la union entre los parametros con las cosultas/Sustituye ?s por datos
+    if(!($statement->bind_param("s", $NombreZombie))) 
+    {
+        die("Error de vinculación(".$statement->errno."): ".$statement->error);
+    }
+    
+    if(!$statement->execute()) 
+    {
+        die("Error en ejecución de la consulta(".$statement->errno."): ".$statement->error);
+    }
+    
+    desconectar($conexion_bd);
+}
+
+function EstadoActual($NumZombie, $NumEstado)
+{
+     
+    $conexion_bd = conectar();
+    
+    $consulta = 'INSERT INTO REGISTRO (NumZombie, NumEstado) VALUES (?,?)';
+    //Parametros son los signos de interrogación
+
+    //Verifica que la consulta sea correcta
+    if(!($statement = $conexion_bd->prepare($consulta))) 
+    {
+        die("Error(".$conexion_bd->errno."): ".$conexion_bd->error);
+    }
+    
+    //Evita +- SQL inyection | Hace la union entre los parametros con las cosultas/Sustituye ?s por datos
+    if(!($statement->bind_param("ss", $NumZombie, $NumEstado)))
+    {
+        die("Error de vinculación(".$statement->errno."): ".$statement->error);
+    }
+    
+    if(!$statement->execute()) 
+    {
+        die("Error en ejecución de la consulta(".$statement->errno."): ".$statement->error);
+    }
+    
+    desconectar($conexion_bd);
+}
+
+function ActualizarCliente($idCliente, $direccionCliente, $poblacion, $codigoPostal, $telefono)
+{
+    $conexion_bd = conectar();
+    
+    $consulta = "UPDATE CLIENTE SET direccionCliente = ?, poblacion = ?, codigoPostal = ?, telefono = ? WHERE idCliente = ?";
+    //Parametros son los signos de interrogación
+
+    //Verifica que la consulta sea correcta
+    if(!($statement = $conexion_bd->prepare($consulta))) 
+    {
+        die("Error(".$conexion_bd->errno."): ".$conexion_bd->error);
+    }
+    
+    //Evita +- SQL inyection | Hace la union entre los parametros con las cosultas/Sustituye ??s por datos
+    if(!($statement->bind_param("sssss", $direccionCliente, $poblacion, $codigoPostal, $telefono, $idCliente))) 
+    {
+        die("Error de vinculación(".$statement->errno."): ".$statement->error);
+    }
+    
+    if(!$statement->execute()) 
+    {
+        die("Error en ejecución de la consulta(".$statement->errno."): ".$statement->error);
+    }
+    
+    desconectar($conexion_bd);
+}
+
 function select($name, $tabla, $id="id", $nombre="nombre") 
 {
     $resultado = '<select name="'.$name.'" class="browser-default">';
@@ -170,87 +255,4 @@ function updateColorAuto($matricula, $nuevoColor = 'Negro')
 }
 //updateColorAuto('V8018LJ', 'Verde');
 //echo tablaCocheVenta();
-
-function InsertZombie($NombreZombie)
-{
-     
-    $conexion_bd = conectar();
-    
-    $consulta = 'INSERT INTO ZOMBIE (NombreZombie) VALUES (?)';
-    //Parametros son los signos de interrogación
-
-    //Verifica que la consulta sea correcta
-    if(!($statement = $conexion_bd->prepare($consulta))) 
-    {
-        die("Error(".$conexion_bd->errno."): ".$conexion_bd->error);
-    }
-    
-    //Evita +- SQL inyection | Hace la union entre los parametros con las cosultas/Sustituye ?s por datos
-    if(!($statement->bind_param("s", $NombreZombie))) 
-    {
-        die("Error de vinculación(".$statement->errno."): ".$statement->error);
-    }
-    
-    if(!$statement->execute()) 
-    {
-        die("Error en ejecución de la consulta(".$statement->errno."): ".$statement->error);
-    }
-    
-    desconectar($conexion_bd);
-}
-
-function EstadoActual($NombreZombie)
-{
-     
-    $conexion_bd = conectar();
-    
-    $consulta = 'INSERT INTO REGISTRO (NumZombie, NumEstado) VALUES (?,?)';
-    //Parametros son los signos de interrogación
-
-    //Verifica que la consulta sea correcta
-    if(!($statement = $conexion_bd->prepare($consulta))) 
-    {
-        die("Error(".$conexion_bd->errno."): ".$conexion_bd->error);
-    }
-    
-    //Evita +- SQL inyection | Hace la union entre los parametros con las cosultas/Sustituye ?s por datos
-    if(!($statement->bind_param("ss", $NumZombie,$NumEstado)))
-    {
-        die("Error de vinculación(".$statement->errno."): ".$statement->error);
-    }
-    
-    if(!$statement->execute()) 
-    {
-        die("Error en ejecución de la consulta(".$statement->errno."): ".$statement->error);
-    }
-    
-    desconectar($conexion_bd);
-}
-
-function ActualizarCliente($idCliente, $direccionCliente, $poblacion, $codigoPostal, $telefono)
-{
-    $conexion_bd = conectar();
-    
-    $consulta = "UPDATE CLIENTE SET direccionCliente = ?, poblacion = ?, codigoPostal = ?, telefono = ? WHERE idCliente = ?";
-    //Parametros son los signos de interrogación
-
-    //Verifica que la consulta sea correcta
-    if(!($statement = $conexion_bd->prepare($consulta))) 
-    {
-        die("Error(".$conexion_bd->errno."): ".$conexion_bd->error);
-    }
-    
-    //Evita +- SQL inyection | Hace la union entre los parametros con las cosultas/Sustituye ??s por datos
-    if(!($statement->bind_param("sssss", $direccionCliente, $poblacion, $codigoPostal, $telefono, $idCliente))) 
-    {
-        die("Error de vinculación(".$statement->errno."): ".$statement->error);
-    }
-    
-    if(!$statement->execute()) 
-    {
-        die("Error en ejecución de la consulta(".$statement->errno."): ".$statement->error);
-    }
-    
-    desconectar($conexion_bd);
-}
 ?>
