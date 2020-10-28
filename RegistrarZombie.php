@@ -1,7 +1,7 @@
 <?php
 
 require_once("model.php");
-include("Exa2ParcialHome.php");
+
 conectar();
 
 if (isset($_POST["NombreZombie"]) && isset($_POST["NombreZombie"]) != ""
