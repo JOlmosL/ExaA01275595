@@ -6,8 +6,6 @@ require_once "model.php";
 
     include("_Exa2ParcialTables.html");
 
-    include("_InsertarCliente.html");
-
     include("_EliminarCliente.html");
 
     include("_ActualizarCliente.html");
