@@ -49,10 +49,10 @@
   <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <form  action="InsertarCliente.php" method="POST">
+        <form  action="RegistrarZombie.php" method="POST">
             
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Registrando a un Nuevo Cliente</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Registrando a un Nuevo Zombie</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -63,22 +63,8 @@
               <div class="row justify-content-center">
                 <div class="col-1"></div>
                 <div class="col-10 my-auto">
-                  <label for="number">Id: </label>
-                  <input type="number" placeholder="Ej: 1234" id="idCliente" name="idCliente"><br>
-                  <label for="nombreCliente">Nombre: </label>
-                  <input type="text" placeholder="Ej: Fulanito"  id="nombreCliente" name="nombreCliente"><br>
-                  <label for="apellidosCliente">Apellido: </label>
-                  <input type="text" placeholder="Ej: Hernández" id="apellidosCliente" name="apellidosCliente"><br>
-                  <label for="direccionCliente">Dirección: </label>
-                  <input type="text" placeholder="Ej: Av. De la Calle X" id="direccionCliente" name="direccionCliente"><br>
-                  <label for="poblacion">Población: </label>
-                  <input type="text" placeholder="Ej: Algo" id="poblacion" name="poblacion"><br>
-                  <label for="codigoPostal">Código Postal: </label>
-                  <input type="number" placeholder="Ej: 12345" id="codigoPostal" name="codigoPostal"><br>
-                  <label for="telefono">Teléfono: </label>
-                  <input type="number" placeholder="Ej: 1234567890" id="telefono" name="telefono"><br>
-                  <label for="fechaNac">Fecha de Nacimiento: </label>
-                  <input type="date" id="fechaNac" name="fechaNac"><br>
+                  <label for="NombreZombie">Nombre: </label>
+                  <input type="text" placeholder="Ej: Fulanito Hernández"  id="NombreZombie" name="NombreZombie">
                 </div>
                 <div class="col-1"></div>
               </div>
@@ -87,7 +73,7 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Agregar Cliente</button>
+            <button type="submit" class="btn btn-primary">Registrar Zombie</button>
           </div>
 
         </form>

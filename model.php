@@ -21,29 +21,23 @@ function desconectar($conexion_bd)
     mysqli_close($conexion_bd);
 }
 
-function tablaClientes() 
+function tablaZombie() 
 {
     $consulta = 'SELECT * ';
-    $consulta .= 'FROM CLIENTE';
+    $consulta .= 'FROM ZOMBIE';
     
     $conexion_bd = conectar();
     $resultados_consulta = $conexion_bd->query($consulta);  
     
     $resultado = '<table class="table">';
-    $resultado .= '<thead><tr><th scope="col">IdCliente</th><th scope="col">Nombre</th><th scope="col">Apellido</th><th scope="col">Dirección</th><th scope="col">Población</th><th scope="col">Código Postal</th><th scope="col">Teléfono</th><th scope="col">Fecha de Nacimiento</th></tr></thead>';
+    $resultado .= '<thead><tr><th scope="col">Numero de Zombie</th><th scope="col">Nombre del Zombie</th></thead>';
 
     while ($row = mysqli_fetch_array($resultados_consulta, MYSQLI_ASSOC)) 
     {
         $resultado .= '<tbody>';    
         $resultado .= '<tr>';
-        $resultado .= '<th scope="row">'.$row["idCliente"].'</th>';
-        $resultado .= '<td>'.$row["nombreCliente"].'</td>';
-        $resultado .= '<td>'.$row["apellidosCliente"].'</td>';
-        $resultado .= '<td>'.$row["direccionCliente"].'</td>';
-        $resultado .= '<td>'.$row["poblacion"].'</td>';
-        $resultado .= '<td>'.$row["codigoPostal"].'</td>';
-        $resultado .= '<td>'.$row["telefono"].'</td>';
-        $resultado .= '<td>'.$row["fechaNac"].'</td>';
+        $resultado .= '<th scope="row">'.$row["NumZombie"].'</th>';
+        $resultado .= '<td>'.$row["NombreZombie"].'</td>';
         $resultado .= '</tr>';
         $resultado .= '</tbody>';
     }
@@ -154,7 +148,6 @@ function select($name, $tabla, $id="id", $nombre="nombre")
 }
 //echo select("cliente", "cliente", "idCliente", "nombreCliente");
 
-
 function updateColorAuto($matricula, $nuevoColor = 'Negro') 
 {
      
@@ -186,12 +179,12 @@ function updateColorAuto($matricula, $nuevoColor = 'Negro')
 //updateColorAuto('V8018LJ', 'Verde');
 //echo tablaCocheVenta();
 
-function InsertNuevoCliente($idCliente, $nombreCliente, $apellidosCliente, $direccionCliente, $poblacion, $codigoPostal, $telefono, $fechaNac) 
+function InsertZombie($NombreZombie) 
 {
      
     $conexion_bd = conectar();
     
-    $consulta = 'INSERT INTO CLIENTE VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+    $consulta = 'INSERT INTO ZOMBIE (NombreZombie) VALUES (?)';
     //Parametros son los signos de interrogación
 
     //Verifica que la consulta sea correcta
@@ -201,7 +194,7 @@ function InsertNuevoCliente($idCliente, $nombreCliente, $apellidosCliente, $dire
     }
     
     //Evita +- SQL inyection | Hace la union entre los parametros con las cosultas/Sustituye ?s por datos
-    if(!($statement->bind_param("ssssssss", $idCliente, $nombreCliente, $apellidosCliente, $direccionCliente, $poblacion, $codigoPostal, $telefono, $fechaNac))) 
+    if(!($statement->bind_param("s", $NombreZombie))) 
     {
         die("Error de vinculación(".$statement->errno."): ".$statement->error);
     }

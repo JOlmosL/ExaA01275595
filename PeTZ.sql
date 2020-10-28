@@ -30,8 +30,8 @@ CREATE TABLE REGISTRO
     NumEstado int,
     FechaHora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (NumZombie, NumEstado),
-    FOREIGN KEY (NumZombie) REFERENCES ZOMBIE (NumZombie),
-    FOREIGN KEY (NumEstado) REFERENCES ESTADO (NumEstado)
+    FOREIGN KEY (NumZombie) REFERENCES ZOMBIE (NumZombie) ON DELETE RESTRICT,
+    FOREIGN KEY (NumEstado) REFERENCES ESTADO (NumEstado) ON DELETE RESTRICT
 );
 
 INSERT INTO REGISTRO VALUES
@@ -68,14 +68,16 @@ END$$
 
 CREATE PROCEDURE Registros_Zombies()
 BEGIN
-    SELECT Z.NombreZombie, E.NombreEstado, R.FechaHora
-    FROM ZOMBIE Z, ESTADO E, REGISTRO R 
-    WHERE Z.NumZombie = R.NumZombie AND E.NumEstado = R.NumEstado
-    GROUP BY Z.NumZombie;
+    SELECT ZOMBIE.NombreZombie, ESTADO.NombreEstado, REGISTRO.FechaHora
+    FROM ZOMBIE, ESTADO, REGISTRO 
+    WHERE ZOMBIE.NumZombie = REGISTRO.NumZombie AND ESTADO.NumEstado = REGISTRO.NumEstado
+    GROUP BY ZOMBIE.NombreZombie, ESTADO.NombreEstado;
 END$$
 
 CREATE PROCEDURE Cant_Zombies()
 BEGIN
-    SELECT COUNT(NumZombie) AS 'Cantidad total de Zombies', NumEstado, COUNT(NumEstado) AS 'Cantidad de Zombies por Estado'
-    FROM REGISTRO
-    GROUP BY NumEstado
+    SELECT ESTADO.NombreEstado, COUNT(REGISTRO.NumEstado) AS 'Zombies por Estado'
+    FROM REGISTRO, ESTADO
+    WHERE REGISTRO.NumEstado = ESTADO.NumEstado
+    GROUP BY REGISTRO.NumEstado;
+END$$
