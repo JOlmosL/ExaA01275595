@@ -10,7 +10,7 @@ if (isset($_POST["idCliente"]) && isset($_POST["idCliente"]) != "")
 
     if (is_numeric($idCliente))
     {
-        EliminarCliente($idCliente);
+        EstadoActual($idCliente);
         include("Exa2ParcialHome.php");
     }
 }

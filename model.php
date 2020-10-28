@@ -50,16 +50,16 @@ function tablaZombie()
     return $resultado;
 }
 
-function tablaCocheVenta() 
+function tablaEstado() 
 {
     $consulta = 'SELECT * ';
-    $consulta .= 'FROM COCHE_VENDIDO';
+    $consulta .= 'FROM ESTADO';
     
     $conexion_bd = conectar();
     $resultados_consulta = $conexion_bd->query($consulta);  
     
     $resultado = '<table class="table">';
-    $resultado .= '<thead><tr><th scope="row">Matricula</th><th scope="row">Marca</th><th scope="row">Modelo</th><th scope="row">Color</th><th scope="row">Precio</th><th scope="row">ExtrasInstalados</th><th scope="row">Cliente</th></tr></thead>';
+    $resultado .= '<thead><tr><th scope="row">Numero de Estado</th><th scope="row">Significado</th></tr></thead>';
 
     while ($row = mysqli_fetch_array($resultados_consulta, MYSQLI_ASSOC)) 
     { 
@@ -72,13 +72,8 @@ function tablaCocheVenta()
         
         $resultado .= '<tbody>';
         $resultado .= '<tr>';
-        $resultado .= '<th scope="row">'.$row["matricula"].'</th>';
-        $resultado .= '<td>'.$row["marca"].'</td>';
-        $resultado .= '<td>'.$row["modelo"].'</td>';
-        $resultado .= '<td>'.$row["color"].'</td>';
-        $resultado .= '<td>'.$row["precio"].'</td>';
-        $resultado .= '<td>'.$row["extrasInstalados"].'</td>';
-        $resultado .= '<td>'.$row["cliente"].'</td>';
+        $resultado .= '<th scope="row">'.$row["NumEstado"].'</th>';
+        $resultado .= '<td>'.$row["NombreEstado"].'</td>';
         $resultado .= '</tr>';
         $resultado .= '</tbody>';
     }
@@ -91,27 +86,24 @@ function tablaCocheVenta()
     return $resultado;
 }
 
-function tablaRevision()
+function tablaRegistro()
 {
     $consulta = 'SELECT * ';
-    $consulta .= 'FROM REVISION';
+    $consulta .= 'FROM REGISTRO';
     
     $conexion_bd = conectar();
     $resultados_consulta = $conexion_bd->query($consulta);  
     
     $resultado = '<table class="table">';
-    $resultado .= '<thead><tr><th scope="col">Numero</th><th scope="col">Cambio de Aceite</th><th scope="col">Cambio de Filtro</th><th scope="col">Revisión de Frenos</th><th scope="col">Otros</th><th scope="col">Matrícula</th></tr></thead>';
+    $resultado .= '<thead><tr><th scope="col">Numero de Zombie</th><th scope="col">Numero de Estado</th><th scope="col">Fecha y Hora de Registro</th></tr></thead>';
 
     while ($row = mysqli_fetch_array($resultados_consulta, MYSQLI_ASSOC)) 
     {   
         $resultado .= '<tbody>';     
         $resultado .= '<tr>';
-        $resultado .= '<th scope="row">'.$row["noRevision"].'</th>';
-        $resultado .= '<td>'.$row["cambioAceite"].'</td>';
-        $resultado .= '<td>'.$row["cambioFiltro"].'</td>';
-        $resultado .= '<td>'.$row["revisionFrenos"].'</td>';
-        $resultado .= '<td>'.$row["otros"].'</td>';
-        $resultado .= '<td>'.$row["matricula"].'</td>';
+        $resultado .= '<th scope="row">'.$row["NumZombie"].'</th>';
+        $resultado .= '<th scope="row">'.$row["NumEstado"].'</th>';
+        $resultado .= '<td>'.$row["FechaHora"].'</td>';
         $resultado .= '</tr>';
         $resultado .= '</tbody>';
     }
@@ -179,7 +171,7 @@ function updateColorAuto($matricula, $nuevoColor = 'Negro')
 //updateColorAuto('V8018LJ', 'Verde');
 //echo tablaCocheVenta();
 
-function InsertZombie($NombreZombie) 
+function InsertZombie($NombreZombie)
 {
      
     $conexion_bd = conectar();
@@ -207,12 +199,12 @@ function InsertZombie($NombreZombie)
     desconectar($conexion_bd);
 }
 
-function EliminarCliente($idCliente) 
+function EstadoActual($NombreZombie)
 {
      
     $conexion_bd = conectar();
     
-    $consulta = "DELETE FROM CLIENTE WHERE idCliente = ?";
+    $consulta = 'INSERT INTO REGISTRO (NumZombie, NumEstado) VALUES (?,?)';
     //Parametros son los signos de interrogación
 
     //Verifica que la consulta sea correcta
@@ -222,7 +214,7 @@ function EliminarCliente($idCliente)
     }
     
     //Evita +- SQL inyection | Hace la union entre los parametros con las cosultas/Sustituye ?s por datos
-    if(!($statement->bind_param("s", $idCliente))) 
+    if(!($statement->bind_param("ss", $NumZombie,$NumEstado)))
     {
         die("Error de vinculación(".$statement->errno."): ".$statement->error);
     }
