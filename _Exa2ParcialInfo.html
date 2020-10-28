@@ -1,33 +1,42 @@
 
-<section id="Preguntas">
-    <h2>Preguntas a Responder</h2>
-    <ol>
-        <p><b>¿Por qué es una buena práctica separar el modelo del controlador? - </b>Permite la detección rápida y eficiente de errores además de que nos permite dividir en multiples partes el código trabajado.</p>
-        <p><b>¿Qué es SQL injection y cómo se puede prevenir? - </b>Es una vulnerabilidad que permite al atacante enviar o “inyectar” instrucciones SQL de forma maliciosa y malintencionada dentro del código SQL programado para la manipulación de bases de datos, haciendo que todos los datos almacenados corran peligro.
-        Entre las diferentes acciones que se pueden realizar, se menciona:
-        <ul>
-            <li>Modificar el comportamiento de nuestras consultas a través de parámetros no deseados</li>
-            <li>Falsificar identidades</li>
-            <li>Obtener y divulgar información de la base de datos (contraseñas, correos, información relevante, entre otros)</li>
-            <li>Borrar la base de datos</li>
-            <li>Cambiar el nombre a las tablas</li>
-            <li>Anular transacciones</li>
-            <li>Etc... [1]</li>
-        </ul>
-        Puede prevenirse haciendo uso de las siguientes técnicas:
-        <li>Convertir siempre el valor a su tipo correspondiente</li>
-        <li>Parametrizar las consultas SQL</li>
-        <li>Usar una cuenta con permisos restringidos a la base de datos</li>
-        <li>No mostrar al usuario la información de error generada por la base de datos</li>
-        <li>Rechazar las peticiones con caractéres sospechosos [2]</li>
-        </p>
-    </ol>
-</section>
+<div class="container">
+    <h3>Zombis</h3>
+    <a class="right btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
 
-<section id="Bibliografia">
-    <h2>Bibliografía</h2>
-    <ol>
-        <p><b>[1] - </b><a href="https://openwebinars.net/blog/que-es-sql-injection/">https://openwebinars.net/blog/que-es-sql-injection/</a></p>
-        <p><b>[2] - </b><a href="https://geeks.ms/gtorres/2010/10/29/tips-para-evitar-sql-injection/">https://geeks.ms/gtorres/2010/10/29/tips-para-evitar-sql-injection/</a></p>
-    </ol>
-</section>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Zombie</th>
+                <th>Estados</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>Eduardo</td>
+                <td>infección (2003-08-11 07:05:00)
+                    <br>desorientación (2005-08-14 11:35:00)
+                    <br>violencia (2013-08-12 10:05:00)
+                    <br>desmayo (2019-10-25 13:05:00)
+                    <br>
+                    <a class="waves-effect waves-light btn"><i class="material-icons left">add</i>Registrar estado</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Ricardo</td>
+                <td>infección (2005-08-14 11:35:00)
+                    <br>desorientación (2013-08-12 10:05:00)
+                    <br>violencia (2014-08-12 10:05:00)
+                    <br>
+                    <a class="waves-effect waves-light btn"><i class="material-icons left">add</i>Registrar estado</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Tú</td>
+                <td>infección (2019-10-25 13:05:00)
+                    <br><a class="waves-effect waves-light btn"><i class="material-icons left">add</i>Registrar estado</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
