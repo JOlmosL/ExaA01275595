@@ -7,6 +7,6 @@ require_once "model.php";
     echo '<h3>REGISTRO DE ZOMBIES Y SUS ESTADOS REGISTRADOS</h3>';
     echo tablaRegistro();
 
-    include("_FExa2ParcialFooter.html");
+    include("_Exa2ParcialFooter.html");
 
 ?>

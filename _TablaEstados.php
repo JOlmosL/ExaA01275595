@@ -7,6 +7,6 @@ require_once "model.php";
     echo '<h3>¡CONOCE LOS ESTADOS DE LOS ZOMBIES!</h3>';
     echo tablaEstados();
 
-    include("_FExa2ParcialFooter.html");
+    include("_Exa2ParcialFooter.html");
 
 ?>

@@ -7,6 +7,6 @@ require_once "model.php";
     echo '<h3>ZOMBIES ACTUALMENTE REGISTRADOS</h3>';
     echo tablaZombie();
 
-    include("_FExa2ParcialFooter.html");
+    include("_Exa2ParcialFooter.html");
 
 ?>
