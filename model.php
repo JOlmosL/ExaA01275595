@@ -4,7 +4,7 @@
 function conectar() 
 {
 
-    $conexion_bd = mysqli_connect("localhost","root","","CONCESIONARIO");
+    $conexion_bd = mysqli_connect("178.128.147.74","doadmin","ysuucn7048n2le7u","Exa2Parcial");
     
     if ($conexion_bd == NULL) 
     {
