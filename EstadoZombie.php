@@ -12,7 +12,7 @@ if (isset($_POST["NumZombie"]) && isset($_POST["NumZombie"]) != ""
 
     if (is_numeric($NumZombie) && is_numeric($NumEstado))
     {
-        EstadoActual($NumZombie, $NumEstado)
+        EstadoActual($NumZombie, $NumEstado);
         include("Exa2ParcialHome.php");
     }
 }
