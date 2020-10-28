@@ -25,6 +25,7 @@ function tablaZombie()
 {
     $consulta = 'SELECT * ';
     $consulta .= 'FROM ZOMBIE';
+    $consulta .= 'ORDER BY NumZombie';
     
     $conexion_bd = conectar();
     $resultados_consulta = $conexion_bd->query($consulta);  
@@ -54,6 +55,7 @@ function tablaEstado()
 {
     $consulta = 'SELECT * ';
     $consulta .= 'FROM ESTADO';
+    $consulta .= 'ORDER BY NumEstado';
     
     $conexion_bd = conectar();
     $resultados_consulta = $conexion_bd->query($consulta);  
