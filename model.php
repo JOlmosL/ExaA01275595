@@ -29,13 +29,14 @@ function tablaClientes()
     $conexion_bd = conectar();
     $resultados_consulta = $conexion_bd->query($consulta);  
     
-    $resultado = '<table>';
-    $resultado .= '<tr><th>IdCliente</th><th>Nombre</th><th>Apellido</th><th>Dirección</th><th>Población</th><th>Código Postal</th><th>Teléfono</th><th>Fecha de Nacimiento</th></tr>';
+    $resultado = '<table class="table">';
+    $resultado .= '<thead><tr><th scope="col">IdCliente</th><th scope="col">Nombre</th><th scope="col">Apellido</th><th scope="col">Dirección</th><th scope="col">Población</th><th scope="col">Código Postal</th><th scope="col">Teléfono</th><th scope="col">Fecha de Nacimiento</th></tr></thead>';
 
     while ($row = mysqli_fetch_array($resultados_consulta, MYSQLI_ASSOC)) 
-    {    
+    {
+        $resultado .= '<tbody>';    
         $resultado .= '<tr>';
-        $resultado .= '<td>'.$row["idCliente"].'</td>';
+        $resultado .= '<th scope="row">'.$row["idCliente"].'</th>';
         $resultado .= '<td>'.$row["nombreCliente"].'</td>';
         $resultado .= '<td>'.$row["apellidosCliente"].'</td>';
         $resultado .= '<td>'.$row["direccionCliente"].'</td>';
@@ -44,6 +45,7 @@ function tablaClientes()
         $resultado .= '<td>'.$row["telefono"].'</td>';
         $resultado .= '<td>'.$row["fechaNac"].'</td>';
         $resultado .= '</tr>';
+        $resultado .= '</tbody>';
     }
     
     mysqli_free_result($resultados_consulta); //Liberar la memoria
