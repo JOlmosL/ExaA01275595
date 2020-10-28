@@ -116,8 +116,6 @@ function tablaRegistro()
     return $resultado;
 }
 
-
-
 function InsertZombie($NombreZombie)
 {
      
@@ -174,85 +172,34 @@ function EstadoActual($NumZombie, $NumEstado)
     desconectar($conexion_bd);
 }
 
-function ActualizarCliente($idCliente, $direccionCliente, $poblacion, $codigoPostal, $telefono)
+function Registros_Zombies()
 {
+    $consulta = 'SELECT ZOMBIE.NombreZombie, ESTADO.NombreEstado, REGISTRO.FechaHora ';
+    $consulta .= 'FROM ZOMBIE, ESTADO, REGISTRO WHERE ZOMBIE.NumZombie = REGISTRO.NumZombie AND ESTADO.NumEstado = REGISTRO.NumEstado ';
+    $consulta .= 'GROUP BY ZOMBIE.NombreZombie, ESTADO.NombreEstado';
+    
     $conexion_bd = conectar();
-    
-    $consulta = "UPDATE CLIENTE SET direccionCliente = ?, poblacion = ?, codigoPostal = ?, telefono = ? WHERE idCliente = ?";
-    //Parametros son los signos de interrogación
-
-    //Verifica que la consulta sea correcta
-    if(!($statement = $conexion_bd->prepare($consulta))) 
-    {
-        die("Error(".$conexion_bd->errno."): ".$conexion_bd->error);
-    }
-    
-    //Evita +- SQL inyection | Hace la union entre los parametros con las cosultas/Sustituye ??s por datos
-    if(!($statement->bind_param("sssss", $direccionCliente, $poblacion, $codigoPostal, $telefono, $idCliente))) 
-    {
-        die("Error de vinculación(".$statement->errno."): ".$statement->error);
-    }
-    
-    if(!$statement->execute()) 
-    {
-        die("Error en ejecución de la consulta(".$statement->errno."): ".$statement->error);
-    }
-    
-    desconectar($conexion_bd);
-}
-
-function select($name, $tabla, $id="id", $nombre="nombre") 
-{
-    $resultado = '<select name="'.$name.'" class="browser-default">';
-    $resultado .= '<option value="" disabled selected>Selecciona un '.$tabla.'</option>';
-    $conexion_bd = conectar();
-    
-    $consulta = 'SELECT '.$id.', '.$nombre.' FROM '.$tabla.' ORDER BY '.$nombre.' ASC'; //SELECT idCliente, nombreCliente FROM CLIENTE ORDER BY nombreCliente 
     $resultados_consulta = $conexion_bd->query($consulta);  
     
-    while ($row = mysqli_fetch_array($resultados_consulta, MYSQLI_BOTH)) 
-    {
-        
-        $resultado .= '<option value="'.$row[$id].'">'.$row[$nombre].'</option>';
+    $resultado = '<table class="table">';
+    $resultado .= '<thead><tr><th scope="col">Nombre del Zombie</th><th scope="col">Nombre del Estado</th><th scope="col">Fecha y Hora de Registro</th></tr></thead>';
+
+    while ($row = mysqli_fetch_array($resultados_consulta, MYSQLI_ASSOC)) 
+    {   
+        $resultado .= '<tbody>';     
+        $resultado .= '<tr>';
+        $resultado .= '<th scope="row">'.$row["NombreZombie"].'</th>';
+        $resultado .= '<th scope="row">'.$row["NombreEstado"].'</th>';
+        $resultado .= '<td>'.$row["FechaHora"].'</td>';
+        $resultado .= '</tr>';
+        $resultado .= '</tbody>';
     }
     
-    mysqli_free_result($resultados_consulta); //Liberar la memoria
+    mysqli_free_result($resultados_consulta);
     
-    $resultado .= '</select><label>'.$tabla.'</label>';
+    $resultado .= '</table>';
     
     desconectar($conexion_bd);
     return $resultado;
 }
-//echo select("cliente", "cliente", "idCliente", "nombreCliente");
-
-function updateColorAuto($matricula, $nuevoColor = 'Negro') 
-{
-     
-    $conexion_bd = conectar();
-    
-    $consulta = "UPDATE coche_vendido SET color = ? WHERE matricula = ?";
-    //Parametros son los signos de interrogación
-
-
-    //Verifica que la consulta sea correcta
-    if(!($statement = $conexion_bd->prepare($consulta))) 
-    {
-        die("Error(".$conexion_bd->errno."): ".$conexion_bd->error);
-    }
-    
-    //Evita +- SQL inyection | Hace la union entre los parametros con las cosultas/Sustituye ??s por datos
-    if(!($statement->bind_param("ss",$nuevoColor, $matricula))) 
-    {
-        die("Error de vinculación(".$statement->errno."): ".$statement->error);
-    }
-    
-    if(!$statement->execute()) 
-    {
-        die("Error en ejecución de la consulta(".$statement->errno."): ".$statement->error);
-    }
-    
-    desconectar($conexion_bd);
-}
-//updateColorAuto('V8018LJ', 'Verde');
-//echo tablaCocheVenta();
 ?>
