@@ -81,3 +81,18 @@ BEGIN
     WHERE REGISTRO.NumEstado = ESTADO.NumEstado
     GROUP BY REGISTRO.NumEstado;
 END$$
+
+CREATE PROCEDURE Registros_Actualizados()
+BEGIN
+    SELECT * 
+    FROM REGISTRO
+    ORDER BY FechaHora;
+END$$
+
+CREATE PROCEDURE Registro_Especial(NumEstado int)
+BEGIN
+    SELECT * 
+    FROM REGISTRO
+    WHERE NumEstado = 2
+    LIMIT 2;
+END$$

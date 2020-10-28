@@ -12,12 +12,12 @@ if (isset($_POST["NumZombie"]) && isset($_POST["NumZombie"]) != "" && isset($_PO
     if (is_numeric($NumZombie) && is_numeric($NumEstado))
     {
         EstadoActual($NumZombie, $NumEstado);
-        include("Exa2ParcialHome.php");
+        include("_TablaRegistro.php");
     }
 }
 
 else
 {
-    header("location:Exa2ParcialHome.php");
+    header("location:_TablaRegistro.php");
 }
 ?>

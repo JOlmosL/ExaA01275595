@@ -9,11 +9,11 @@ if (isset($_POST["NombreZombie"]) && isset($_POST["NombreZombie"]) != "")
     $NombreZombie = htmlspecialchars($_POST["NombreZombie"]);
 
     InsertZombie($NombreZombie);
-    include("Exa2ParcialHome.php");
+    include("_TablaZombies.php");
 }
 
 else
 {
-    header("location:Exa2ParcialHome.php");
+    header("location:_TablaZombies.php");
 }
 ?>
