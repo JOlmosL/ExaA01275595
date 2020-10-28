@@ -202,4 +202,64 @@ function Registros_Zombies()
     desconectar($conexion_bd);
     return $resultado;
 }
+
+function Cant_Zombies()
+{
+    $consulta = 'SELECT ESTADO.NombreEstado, COUNT(REGISTRO.NumEstado) ';
+    $consulta .= 'FROM REGISTRO, ESTADO WHERE REGISTRO.NumEstado = ESTADO.NumEstado ';
+    $consulta .= 'GROUP BY REGISTRO.NumEstado';
+    
+    $conexion_bd = conectar();
+    $resultados_consulta = $conexion_bd->query($consulta);  
+    
+    $resultado = '<table class="table">';
+    $resultado .= '<thead><tr><th scope="col">Nombre del Estado</th><th scope="col">Cantidad de Zombien con este Estado</th></tr></thead>';
+
+    while ($row = mysqli_fetch_array($resultados_consulta, MYSQLI_ASSOC)) 
+    {   
+        $resultado .= '<tbody>';     
+        $resultado .= '<tr>';
+        $resultado .= '<th scope="row">'.$row["NombreEstado"].'</th>';
+        $resultado .= '<td'.$row["NumEstado"].'</td>';
+        $resultado .= '</tr>';
+        $resultado .= '</tbody>';
+    }
+    
+    mysqli_free_result($resultados_consulta);
+    
+    $resultado .= '</table>';
+    
+    desconectar($conexion_bd);
+    return $resultado;
+}
+
+function Registros_Actualizados()
+{
+    $consulta = 'SELECT * ';
+    $consulta .= 'FROM REGISTRO ORDER BY FechaHora';
+    
+    $conexion_bd = conectar();
+    $resultados_consulta = $conexion_bd->query($consulta);  
+    
+    $resultado = '<table class="table">';
+    $resultado .= '<thead><tr><th scope="col">Numero de Zombie</th><th scope="col">Numero de Estado</th><th scope="col">Fecha y Hora de Registro</th></tr></thead>';
+
+    while ($row = mysqli_fetch_array($resultados_consulta, MYSQLI_ASSOC)) 
+    {   
+        $resultado .= '<tbody>';     
+        $resultado .= '<tr>';
+        $resultado .= '<th scope="row">'.$row["NumZombie"].'</th>';
+        $resultado .= '<th scope="row">'.$row["NumEstado"].'</th>';
+        $resultado .= '<td>'.$row["FechaHora"].'</td>';
+        $resultado .= '</tr>';
+        $resultado .= '</tbody>';
+    }
+    
+    mysqli_free_result($resultados_consulta);
+    
+    $resultado .= '</table>';
+    
+    desconectar($conexion_bd);
+    return $resultado;
+}
 ?>
