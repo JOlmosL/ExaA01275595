@@ -97,10 +97,10 @@
               <div class="row justify-content-center">
                 <div class="col-1"></div>
                 <div class="col-10 my-auto">
-                  <label for="idCliente">ID del Cliente a Eliminar: </label>
-                  <input type="number" placeholder="Ej: 1234" id="idCliente" name="idCliente">
-                  <label for="idCliente">ID del Cliente a Eliminar: </label>
-                  <input type="number" placeholder="Ej: 1234" id="idCliente" name="idCliente">
+                  <label for="NumZombie">Numero del Zombie a Actualizar: </label>
+                  <input type="number" placeholder="Ej: 1234" id="NumZombie" name="NumZombie">
+                  <label for="NumEstado">Numero del Nuevo Estado del Zombie: </label>
+                  <input type="number" placeholder="Ej: 1,2,3 o 4" id="NumEstado" name="NumEstado">
                 </div>
                 <div class="col-1"></div>
               </div>
@@ -110,49 +110,6 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             <button type="submit" class="btn btn-primary">Eliminar Cliente</button>
-          </div>
-
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <form  action="InsertarCliente.php" method="POST">
-          
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Actuaizar la información de un Cliente</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-
-          <div class="modal-body">
-            <div class="container-fluid">
-              <div class="row justify-content-center">
-                <div class="col-1"></div>
-                <div class="col-10 my-auto">
-                  <label for="idCliente">ID del Cliente a Actualizar su información: </label>
-                  <input type="number" placeholder="Ej: 1234" id="idCliente" name="idCliente"><br><br>
-                  <label for="direccionCliente">Nueva Dirección: </label>
-                  <input type="text" placeholder="Ej: Av. De la Calle X" id="direccionCliente" name="direccionCliente"><br>
-                  <label for="poblacion">Nueva Población: </label>
-                  <input type="text" placeholder="Ej: Algo" id="poblacion" name="poblacion"><br>
-                  <label for="codigoPostal">Nuevo Código Postal: </label>
-                  <input type="number" placeholder="Ej: 12345" id="codigoPostal" name="codigoPostal"><br>
-                  <label for="telefono">Nuevo Teléfono: </label>
-                  <input type="number" placeholder="Ej: 1234567890" id="telefono" name="telefono"><br>
-                </div>
-                <div class="col-1"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Actualizar Cliente</button>
           </div>
 
         </form>
